@@ -1,0 +1,30 @@
+### POST Admin
+POST http://localhost:8075/admin
+content-type: application/json
+
+{
+  "username": "123",
+  "password": "123",
+  "firstName": "123",
+  "lastName": "123",
+  "position": "123"
+}
+
+### GET Admin
+GET http://localhost:8075/admin/1
+
+### PUT Admin
+PUT http://localhost:8075/admin
+content-type: application/json
+
+{
+  "id": 1,
+  "username": "zxc",
+  "password": "zxc",
+  "firstName": "zxc",
+  "lastName": "zxc",
+  "position": "zxc"
+}
+
+### DELETE Admin
+DELETE http://localhost:8075/admin/1
