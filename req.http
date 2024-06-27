@@ -1,5 +1,28 @@
+@admin_token = Bearer_eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0MTEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTk0OTU5NjYsImV4cCI6MTcxOTQ5OTU2Nn0.76l1v6KcGN17TLFukrMwaJ1us7czN9l0oNafAUnvp-E
+@participant_token = Bearer_eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJxcXEiLCJyb2xlIjoiUEFSVElDSVBBTlQiLCJpYXQiOjE3MTk0OTc4NjgsImV4cCI6MTcxOTUwMTQ2OH0.DxwowY9KMGNPxmEbkupwrBWjGqLvAQmHHWVzgxuSNy0
+
+### auth admin
+POST http://localhost:8075/auth/123411/123
+
+### auth participant
+POST http://localhost:8075/auth/qqq/qqq
+
 ### POST Admin
 POST http://localhost:8075/admin
+Authorization: {{admin_token}}
+content-type: application/json
+
+{
+  "username": "123",
+  "password": "123",
+  "firstName": "123",
+  "lastName": "123",
+  "position": "123"
+}
+
+### POST Admin
+POST http://localhost:8075/admin
+Authorization: {{participant_token}}
 content-type: application/json
 
 {
@@ -11,20 +34,61 @@ content-type: application/json
 }
 
 ### GET Admin
-GET http://localhost:8075/admin/1
+GET http://localhost:8075/admin/2
+Authorization: {{admin_token}}
 
 ### PUT Admin
 PUT http://localhost:8075/admin
+Authorization: {{admin_token}}
 content-type: application/json
 
 {
-  "id": 1,
-  "username": "zxc",
-  "password": "zxc",
-  "firstName": "zxc",
-  "lastName": "zxc",
+  "id": 4,
+  "username": "123",
+  "password": "123",
+  "firstName": "123",
+  "lastName": "123",
   "position": "zxc"
 }
 
 ### DELETE Admin
-DELETE http://localhost:8075/admin/1
+DELETE http://localhost:8075/admin/4
+Authorization: {{admin_token}}
+
+
+### POST Participant
+POST http://localhost:8075/participant
+content-type: application/json
+
+{
+  "username": "qqq12",
+  "password": "qqq",
+  "test": "qqq"
+}
+
+### GET Participant
+GET http://localhost:8075/participant/1
+Authorization: {{admin_token}}
+
+### GET Participant
+GET http://localhost:8075/participant/1
+Authorization: {{participant_token}}
+
+### PUT Participant
+PUT http://localhost:8075/participant
+Authorization: {{participant_token}}
+content-type: application/json
+
+{
+  "id": 3,
+  "username": "zzz",
+  "test": "zzzz"
+}
+
+### DELETE Participant
+DELETE http://localhost:8075/participant/7
+Authorization: {{admin_token}}
+
+### DELETE Participant
+DELETE http://localhost:8075/participant/3
+Authorization: {{participant_token}}

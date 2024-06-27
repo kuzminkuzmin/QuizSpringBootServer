@@ -41,7 +41,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin update(Admin admin) {
         try {
-            Admin base = admin;
+            Admin base = this.get(admin.getId());
             base.setPosition(admin.getPosition());
             return this.adminRepository.save(base);
         } catch (DataIntegrityViolationException e) {
@@ -58,6 +58,5 @@ public class AdminServiceImpl implements AdminService {
         } catch (DataIntegrityViolationException e) {
             throw new IllegalArgumentException("Admin not found");
         }
-
     }
 }
