@@ -1,7 +1,10 @@
 package dmitriikuzmin.quiz.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,7 +19,7 @@ import java.util.List;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "participants")
-public class Participant extends User{
+public class Participant extends User {
     @ToString.Exclude
     //@JsonIgnore
     @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL)

@@ -36,6 +36,7 @@ public class QuizServiceImpl implements QuizService {
         this.participantService = participantService;
     }
 
+    //TODO split settings
     @Override
     public Quiz add(String settings, long participantId) {
         try {

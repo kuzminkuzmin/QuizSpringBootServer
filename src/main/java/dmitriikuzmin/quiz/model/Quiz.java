@@ -33,7 +33,6 @@ public class Quiz {
 
     @JsonProperty("results")
     @ToString.Exclude
-    @JsonIgnore
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
     private List<Question> questions = new ArrayList<>();
 }
