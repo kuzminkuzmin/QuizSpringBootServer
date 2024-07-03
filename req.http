@@ -1,5 +1,5 @@
 @admin_token = Bearer_eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0MTEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTk0OTU5NjYsImV4cCI6MTcxOTQ5OTU2Nn0.76l1v6KcGN17TLFukrMwaJ1us7czN9l0oNafAUnvp-E
-@participant_token = Bearer_eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJxcXEiLCJyb2xlIjoiUEFSVElDSVBBTlQiLCJpYXQiOjE3MTk0OTc4NjgsImV4cCI6MTcxOTUwMTQ2OH0.DxwowY9KMGNPxmEbkupwrBWjGqLvAQmHHWVzgxuSNy0
+@participant_token = Bearer_eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJxcXEiLCJyb2xlIjoiUEFSVElDSVBBTlQiLCJpYXQiOjE3MTk5MjY2MjEsImV4cCI6MTcxOTkzMDIyMX0.wpWJaEQWQbID0RL95s_cL8iNQ3GVlfBGMYiq0x98oDs
 
 ### auth admin
 POST http://localhost:8075/auth/123411/123
@@ -61,8 +61,10 @@ POST http://localhost:8075/participant
 content-type: application/json
 
 {
-  "username": "qqq12",
+  "username": "qqq",
   "password": "qqq",
+  "firstName": "John",
+  "lastName": "Doe",
   "test": "qqq"
 }
 
@@ -70,8 +72,12 @@ content-type: application/json
 GET http://localhost:8075/participant/1
 Authorization: {{admin_token}}
 
+### GET Participant by username
+GET http://localhost:8075/participant/byName/qqq
+Authorization: {{participant_token}}
+
 ### GET Participant
-GET http://localhost:8075/participant/1
+GET http://localhost:8075/participant/2
 Authorization: {{participant_token}}
 
 ### PUT Participant
@@ -80,9 +86,11 @@ Authorization: {{participant_token}}
 content-type: application/json
 
 {
-  "id": 3,
-  "username": "zzz",
-  "test": "zzzz"
+  "id": 2,
+  "username": "qqq",
+  "password": "qqq",
+  "firstName": "John",
+  "lastName": "Doe"
 }
 
 ### DELETE Participant
@@ -92,3 +100,16 @@ Authorization: {{admin_token}}
 ### DELETE Participant
 DELETE http://localhost:8075/participant/3
 Authorization: {{participant_token}}
+
+### POST Quiz
+POST http://localhost:8075/quiz/2?settings=amount=10
+
+### GET Quiz
+GET http://localhost:8075/quiz/1
+
+### Get by participant
+GET http://localhost:8075/quiz/byParticipant/2
+
+### Delete
+DELETE http://localhost:8075/quiz/3
+

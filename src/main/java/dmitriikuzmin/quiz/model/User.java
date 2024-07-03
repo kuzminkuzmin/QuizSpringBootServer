@@ -1,5 +1,6 @@
 package dmitriikuzmin.quiz.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class User {
 
     private String lastName;
 
+    @JsonIgnore
     public String getRole() {
         return this.getClass().getSimpleName().toUpperCase();
     }

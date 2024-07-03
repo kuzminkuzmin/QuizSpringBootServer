@@ -1,18 +1,24 @@
 package dmitriikuzmin.quiz.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
-@RequiredArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
 @Table(name = "participants")
 public class Participant extends User{
-    @NonNull
-    private String test;
+    @ToString.Exclude
+    //@JsonIgnore
+    @OneToMany(mappedBy = "participant", cascade = CascadeType.ALL)
+    private List<Quiz> quizzes = new ArrayList<>();
 }

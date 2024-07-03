@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("participant")
 public class ParticipantController {
@@ -42,6 +44,26 @@ public class ParticipantController {
                     new ResponseResult<>(e.getMessage(), null), HttpStatus.BAD_REQUEST
             );
         }
+    }
+
+    @GetMapping("/byName/{username}")
+    public ResponseEntity<ResponseResult<Participant>> getByUsername(@PathVariable String username) {
+        try {
+            return new ResponseEntity<>(
+                    new ResponseResult<>(null, this.participantService.getByUsername(username)), HttpStatus.OK
+            );
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(
+                    new ResponseResult<>(e.getMessage(), null), HttpStatus.BAD_REQUEST
+            );
+        }
+    }
+
+    @GetMapping
+    public ResponseEntity<ResponseResult<List<Participant>>> getAll() {
+        return new ResponseEntity<>(
+                new ResponseResult<>(null, this.participantService.getAll()), HttpStatus.OK
+        );
     }
 
     @PutMapping

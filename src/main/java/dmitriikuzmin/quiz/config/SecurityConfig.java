@@ -36,9 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/auth/**").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/participant/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/participant").hasAnyRole("ADMIN", "PARTICIPANT")
+                .antMatchers("/quiz/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .apply(new JwtConfigurer(jwtTokenProvider));

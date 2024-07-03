@@ -7,6 +7,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ParticipantServiceImpl implements ParticipantService {
     private ParticipantRepository participantRepository;
@@ -39,10 +41,23 @@ public class ParticipantServiceImpl implements ParticipantService {
     }
 
     @Override
+    public Participant getByUsername(String username) {
+        return this.participantRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Participant not found"));
+    }
+
+    @Override
+    public List<Participant> getAll() {
+        return this.participantRepository.findAll();
+    }
+
+    @Override
     public Participant update(Participant participant) {
         try {
             Participant base = this.get(participant.getId());
-            base.setTest(participant.getTest());
+            base.setFirstName(participant.getFirstName());
+            base.setLastName(participant.getLastName());
+            base.setQuizzes(participant.getQuizzes());
             return this.participantRepository.save(base);
         } catch (DataIntegrityViolationException e) {
             throw new IllegalArgumentException("Participant already exists");
