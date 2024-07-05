@@ -37,6 +37,10 @@ content-type: application/json
 GET http://localhost:8075/admin/2
 Authorization: {{admin_token}}
 
+### GET Admin by username
+GET http://localhost:8075/admin/byName/123
+Authorization: {{admin_token}}
+
 ### PUT Admin
 PUT http://localhost:8075/admin
 Authorization: {{admin_token}}
@@ -102,7 +106,7 @@ DELETE http://localhost:8075/participant/3
 Authorization: {{participant_token}}
 
 ### POST Quiz
-POST http://localhost:8075/quiz/2?settings=amount=10
+POST http://localhost:8075/quiz/2?amount=10&category=9&difficulty=medium
 
 ### GET Quiz
 GET http://localhost:8075/quiz/1

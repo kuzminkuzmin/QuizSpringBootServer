@@ -5,7 +5,7 @@ import dmitriikuzmin.quiz.model.Quiz;
 import java.util.List;
 
 public interface QuizService {
-    Quiz add(String settings, long participantId);
+    Quiz add(int amount, int category, String difficulty, long participantId);
 
     Quiz get(long id);
 

@@ -21,10 +21,13 @@ public class QuizController {
     }
 
     @PostMapping("/{participantId}")
-    public ResponseEntity<ResponseResult<Quiz>> add(@PathVariable long participantId, @RequestParam String settings) {
+    public ResponseEntity<ResponseResult<Quiz>> add(
+            @PathVariable long participantId, @RequestParam int amount, int category, String difficulty) {
         try {
             return new ResponseEntity<>(
-                    new ResponseResult<>(null, this.quizService.add(settings, participantId)), HttpStatus.OK
+                    new ResponseResult<>(
+                            null, this.quizService.add(
+                            amount, category, difficulty, participantId)), HttpStatus.OK
             );
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(

@@ -1,19 +1,18 @@
 package dmitriikuzmin.quiz.service;
 
-import dmitriikuzmin.quiz.dto.ResponseResult;
-import dmitriikuzmin.quiz.model.*;
+import dmitriikuzmin.quiz.model.Participant;
+import dmitriikuzmin.quiz.model.Question;
+import dmitriikuzmin.quiz.model.Quiz;
 import dmitriikuzmin.quiz.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,10 +37,18 @@ public class QuizServiceImpl implements QuizService {
 
     //TODO split settings
     @Override
-    public Quiz add(String settings, long participantId) {
+    public Quiz add(int amount, int category, String difficulty, long participantId) {
         try {
+            System.out.println(this.url +
+                    "amount=" + amount +
+                    "&category=" + category +
+                    "&difficulty=" + difficulty + "  =====>>> " + participantId);
             Participant participant = this.participantService.get(participantId);
-            ResponseEntity<Quiz> response = this.restTemplate.exchange(this.url + settings,
+            ResponseEntity<Quiz> response = this.restTemplate.exchange(
+                    this.url +
+                            "amount=" + amount +
+                            "&category=" + category +
+                            "&difficulty=" + difficulty,
                     HttpMethod.GET, null, new ParameterizedTypeReference<>() {
                     });
             Objects.requireNonNull(response.getBody()).setParticipant(participant);

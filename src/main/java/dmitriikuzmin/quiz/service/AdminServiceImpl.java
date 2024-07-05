@@ -39,6 +39,12 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public Admin getByUsername(String username) {
+        return this.adminRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Admin not found"));
+    }
+
+    @Override
     public Admin update(Admin admin) {
         try {
             Admin base = this.get(admin.getId());

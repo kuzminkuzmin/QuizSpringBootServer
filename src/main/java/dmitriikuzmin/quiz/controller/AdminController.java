@@ -44,6 +44,19 @@ public class AdminController {
         }
     }
 
+    @GetMapping("/byName/{username}")
+    public ResponseEntity<ResponseResult<Admin>> getByName(@PathVariable String username) {
+        try {
+            return new ResponseEntity<>(
+                    new ResponseResult<>(null, this.adminService.getByUsername(username)), HttpStatus.OK
+            );
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(
+                    new ResponseResult<>(e.getMessage(), null), HttpStatus.BAD_REQUEST
+            );
+        }
+    }
+
     @PutMapping
     public ResponseEntity<ResponseResult<Admin>> update(@RequestBody Admin admin) {
         try {
