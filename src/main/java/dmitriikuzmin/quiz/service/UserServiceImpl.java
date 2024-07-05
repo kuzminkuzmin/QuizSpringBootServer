@@ -29,4 +29,5 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException(id + " not found"));
     }
+
 }
